@@ -121,8 +121,6 @@ app.post('/scrape', async (req, res) => {
                 const videoResponse = await axios.get(videoUrl);
                 const videoHtml = videoResponse.data;
 
-                console.log(videoResponse.data)
-
                 const hfsMatch = videoHtml.match(/\|hfs(\d+)\|/);
                 const urlMatch = videoHtml.match(/urlset\|(.+?)\|hls/);
 
