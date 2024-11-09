@@ -123,7 +123,7 @@ app.post('/scrape', async (req, res) => {
 
                 console.log(videoResponse.data)
 
-                const hfsMatch = videoHtml.match(/hls\|hfs(\d+)\|/);
+                const hfsMatch = videoHtml.match(/\|hfs(\d+)\|/);
                 const urlMatch = videoHtml.match(/urlset\|(.+?)\|hls/);
 
                 if (hfsMatch && urlMatch) {
