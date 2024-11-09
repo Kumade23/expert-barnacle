@@ -121,7 +121,9 @@ app.post('/scrape', async (req, res) => {
                 const videoResponse = await axios.get(videoUrl);
                 const videoHtml = videoResponse.data;
 
-                const hfsMatch = videoHtml.match(/serversicuro\|hfs(\d+)\|/);
+                console.log(videoResponse.data)
+
+                const hfsMatch = videoHtml.match(/hls\|hfs(\d+)\|/);
                 const urlMatch = videoHtml.match(/urlset\|(.+?)\|hls/);
 
                 if (hfsMatch && urlMatch) {
@@ -158,7 +160,7 @@ app.post('/scrape', async (req, res) => {
 
 app.post('/scrape-series', async (req, res) => {
     const imdbId = req.body.imdbId;
-    const searchUrl = `https://guardaserie.consulting/?story=${imdbId}&do=search&subaction=search`;
+    const searchUrl = `https://guardaserie.okinawa/?story=${imdbId}&do=search&subaction=search`;
 
     try {
         const response = await axios.get(searchUrl);
@@ -205,7 +207,7 @@ app.post('/scrape-series', async (req, res) => {
                     const videoHtml = videoResponse.data;
 
                     // Costruzione URL M3U8
-                    const hfsMatch = videoHtml.match(/serversicuro\|hfs(\d+)\|/);
+                    const hfsMatch = videoHtml.match(/\|hfs(\d+)\|/);
                     const urlMatch = videoHtml.match(/urlset\|(.+?)\|hls/);
 
                     if (hfsMatch && urlMatch) {
